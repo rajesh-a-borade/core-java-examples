@@ -62,6 +62,18 @@ public class TestCompletableFuture {
 								.thenAccept(System.out::println);
 		
 		System.out.println();
+		
+		// runAsync return the Void type
+		CompletableFuture<Void> c = CompletableFuture
+		        .runAsync(() -> System.out.println("runAsync"))
+		        .thenRunAsync(() -> System.out.println("thenRunAsync"));
+		
+		// thenCompose returns flattened future
+		// thenApply() is used when the previous stage returns a pure value not a CompletionStage.
+		// thenCompose() is used when the previous stage returns a CompletionStage.
+		
+		// thenXXXAsync are run on the different executor (default is Common ForkJoin Pool) 
+		
 		System.out.println("--------------MAIN thread EXIT----------");
 		System.out.println();
 	}
